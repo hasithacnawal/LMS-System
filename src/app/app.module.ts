@@ -10,13 +10,10 @@ import { RegisterSuccessComponent } from './auth/register-success/register-succe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-=======
-import { Ng2Webstorage} from 'ngx-webStorage';
+import { Ng2Webstorage } from 'ngx-webStorage';
 import { HomeComponent } from './home/home.component';
->>>>>>> 5bd5417f500462e3c17c19ff8797e3768a7bae18
 
 @NgModule({
   declarations: [
@@ -25,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     LoginComponent,
     RegisterSuccessComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,16 +31,15 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     Ng2Webstorage.forRoot(),
     RouterModule.forRoot([
-       {path:'register',component: RegisterComponent },
-       {path:'login',component: LoginComponent},
-       {path:'register-success',component: RegisterSuccessComponent},
-       {path:'home', component:HomeComponent}
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register-success', component: RegisterSuccessComponent },
+      { path: 'home', component: HomeComponent },
     ]),
     HttpClientModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-
   providers: [],
   bootstrap: [AppComponent],
 })
