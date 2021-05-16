@@ -10,6 +10,8 @@ import { RegisterSuccessComponent } from './auth/register-success/register-succe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
        {path:'register',component: RegisterComponent }
     ]),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    BrowserAnimationsModule
   ],
 
   providers: [],
