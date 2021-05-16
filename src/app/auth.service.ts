@@ -5,7 +5,6 @@ import { from, Observable } from 'rxjs';
 import { LoginPayload } from './auth/login-payload';
 import { JwtAuthResponse } from './auth/jwt-auth-response';
 import { map } from 'rxjs/operators';
-import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +12,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class AuthService {
   private url = 'http://localhost:8080/api/auth/';
 
-  constructor(
-    private httpClient: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   register(registerPayload: RegisterPayload): Observable<any> {
     return this.httpClient.post(this.url + 'signup', registerPayload);
@@ -27,15 +23,13 @@ export class AuthService {
       .post<JwtAuthResponse>(this.url + 'login', loginPayload)
       .pipe(
         map((data) => {
-          this.localStorageService.store(
+          localStorage.setItem(
             'authenticationToken',
-            data.authenticationToken
+            JSON.stringify(data.authenticationToken)
           );
-          this.localStorageService.store('userName', data.userName);
+          localStorage.setItem('userName', JSON.stringify(data.userName));
           return true;
         })
       );
   }
-
-  
 }

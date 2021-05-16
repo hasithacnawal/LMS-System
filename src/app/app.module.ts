@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Ng2Webstorage } from 'ngx-webStorage';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
