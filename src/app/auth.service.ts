@@ -27,7 +27,11 @@ export class AuthService {
             'authenticationToken',
             JSON.stringify(data.authenticationToken)
           );
-          localStorage.setItem('userName', JSON.stringify(data.userName));
+          localStorage.setItem(
+            'authenticationToken',
+            JSON.stringify(data.userName)
+          );
+
           return true;
         })
       );

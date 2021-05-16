@@ -1,7 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -12,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Ng2Webstorage } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -29,18 +27,12 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2Webstorage.forRoot(),
-    RouterModule.forRoot([
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register-success', component: RegisterSuccessComponent },
-      { path: 'home', component: HomeComponent },
-    ]),
+
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

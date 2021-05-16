@@ -1,4 +1,4 @@
 export class JwtAuthResponse {
-    authenticationToken: string;
-    userName: string;
+  authenticationToken: string;
+  userName: string;
 }
