@@ -8,9 +8,12 @@
       <div class="col-md-3" *ngIf="isAuthenticated">
         <a href="/add-journal" class="new-journal">Add Journal</a>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" *ngIf="!isAuthenticated">
         <a href="/login" class="login btn btn-defalt">Login</a>
         <a href="/register" class="register btn btn-defalt">Register</a>
+      </div>
+      <div class="col-md-3" *ngIf="isAuthenticated">
+        <button (click)="logout()">Logout</button>
       </div>
       <!--Login and Register-->
     </div>

@@ -15,21 +15,29 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  register(registerPayload: RegisterPayload): Observable<any> {
+  register(registerPayload: RegisterPayload) {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
 
-  login(loginPayload: LoginPayload): Observable<any> {
+  login(loginPayload: LoginPayload) {
     return this.httpClient
       .post<JwtAuthResponse>(this.url + 'login', loginPayload)
       .pipe(
         map((data) => {
-          localStorage.setItem('authenticationToken', data.authenticationToken);
-          localStorage.setItem('userName', data.userName);
+          localStorage.setItem(
+            'authenticationToken',
+            JSON.stringify(data.authenticationToken)
+          );
+          localStorage.setItem('userName', JSON.stringify(data.userName));
 
           return data;
         })
       );
+  }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('authenticationToken');
+    localStorage.removeItem('userName');
   }
 
   isAuthenticated(): Boolean {
