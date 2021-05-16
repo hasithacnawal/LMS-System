@@ -10,7 +10,9 @@ import { RegisterSuccessComponent } from './auth/register-success/register-succe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng2Webstorage} from 'ngx-webStorage';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -20,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     LoginComponent,
     RegisterSuccessComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,14 +31,15 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     Ng2Webstorage.forRoot(),
     RouterModule.forRoot([
-       {path:'register',component: RegisterComponent },
-       {path:'login',component: LoginComponent},
-       {path:'register-success',component: RegisterSuccessComponent},
-       {path:'home', component:HomeComponent}
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register-success', component: RegisterSuccessComponent },
+      { path: 'home', component: HomeComponent },
     ]),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    BrowserAnimationsModule,
   ],
-
   providers: [],
   bootstrap: [AppComponent],
 })
