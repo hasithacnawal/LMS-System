@@ -13,31 +13,26 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class AuthService {
   private url = 'http://localhost:8080/api/auth/';
 
-  constructor(
-    private httpClient: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   register(registerPayload: RegisterPayload): Observable<any> {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
 
-  login(loginPayload: LoginPayload): Observable<boolean> {
+  login(loginPayload: LoginPayload): Observable<any> {
     return this.httpClient
       .post<JwtAuthResponse>(this.url + 'login', loginPayload)
       .pipe(
         map((data) => {
-          this.localStorageService.store(
-            'authenticationToken',
-            data.authenticationToken
-          );
-          this.localStorageService.store('userName', data.userName);
-          return true;
+          localStorage.setItem('authenticationToken', data.authenticationToken);
+          localStorage.setItem('userName', data.userName);
+
+          return data;
         })
       );
   }
 
   isAuthenticated(): Boolean {
-    return this.localStorageService.retrieve('userName') != null;
+    return localStorage.getItem('userName') != null;
   }
 }

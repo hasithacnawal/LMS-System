@@ -5,7 +5,7 @@
         <h1><a href="" class="title"> Book Hub</a></h1>
       </div>
       <!--Title-->
-      <div class="col-md-3" *ngIf="authService.isAuthenticated()">
+      <div class="col-md-3" *ngIf="isAuthenticated">
         <a href="/add-journal" class="new-journal">Add Journal</a>
       </div>
       <div class="col-md-6">
