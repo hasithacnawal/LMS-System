@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "img": "assets/images/books/book1.JPEG",
+    "title": "Beginning Spring 5",
+    "author": "Joseph B.Ottinger and Andrew Lombardi",
+    "year": 2019,
+    "no_of_copies": 13,
+    "category": ""
+  },
+  {
+    "id": 2,
+    "img": "assets/images/books/book2.JPEG",
+    "title": "Differential Equations",
+    "author": "Dennis G. Zill",
+    "year": 2012,
+    "no_of_copies": 10,
+    "category": ""
+  },
+  {
+    "id": 3,
+    "img": "assets/images/books/book3.JPEG",
+    "title": "Quantum Algorithms via Linear Algebra",
+    "author": "Richard J.Lipton and Kenneth W.Regan",
+    "year": 2014,
+    "no_of_copies": 17,
+    "category": ""
+  },
+  {
+    "id": 4,
+    "img": "assets/images/books/book4.JPEG",
+    "title": "Introduction to Statistical Quality Control",
+    "author": "Douglas C. Montgomery",
+    "year": 2012,
+    "no_of_copies": 8,
+    "category": ""
+  },
+  {
+    "id": 5,
+    "img": "assets/images/books/book5.JPEG",
+    "title": "Graph Theory",
+    "author": "Frank Harry",
+    "year": 1994,
+    "no_of_copies": 7,
+    "category": ""
+  },
+  {
+    "id": 6,
+    "img": "assets/images/books/book6.JPEG",
+    "title": "Digital Image Processing",
+    "author": "R.C.Gonzalez,R.E.Woods and S.L.Eddins",
+    "year": 2020,
+    "no_of_copies": 20,
+    "category": ""
+  },
+  {
+    "id": 7,
+    "img": "assets/images/books/book7.JPEG",
+    "title": "Artificial Intelligence",
+    "author": "E.Rich,K.knight and S.B.Nair",
+    "year": 2010,
+    "no_of_copies": 11,
+    "category": ""
+  },
+  {
+    "id": 8,
+    "img": "assets/images/books/book8.JPEG",
+    "title": "Computer Viruses",
+    "author": "Robert Slade",
+    "year": 1996,
+    "no_of_copies": 7,
+    "category": ""
+  },
+  {
+    "id": 9,
+    "img": "assets/images/books/book9.JPEG",
+    "title": "A Programmer's Guide to Computer Science",
+    "author": "William M.Springer",
+    "year": 2019,
+    "no_of_copies": 20,
+    "category": ""
+  },
+  {
+    "id": 10,
+    "img": "assets/images/books/book10.JPEG",
+    "title": "Vector Analysis",
+    "author": "B.Willson",
+    "year": 2016,
+    "no_of_copies": 14,
+    "category": ""
+  }
+]

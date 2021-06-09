@@ -1,0 +1,11 @@
+.add-journal-content{
+    padding-top: 20px;
+} 
+
+.new-journal-title{
+    color: black;
+}
+
+.journal-content,journal-title{
+    color: black;
+}

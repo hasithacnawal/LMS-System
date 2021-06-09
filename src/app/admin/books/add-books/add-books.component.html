@@ -1,1 +1,108 @@
-<p>add-books works!</p>
+<section class="content">
+  <div class="container">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="breadcrumb breadcrumb-style">
+              <li class="breadcrumb-item">
+                <h4 class="page-title">Add New Book</h4>
+              </li>
+              <li class="breadcrumb-item bcrumb-1">
+                <a routerLink="/admin/dashboard/main">
+                  <i class="fas fa-home"></i> Home</a
+                >
+              </li>
+              <li class="breadcrumb-item bcrumb-2">
+                <a href="#" onClick="return false;">Books</a>
+              </li>
+              <li class="breadcrumb-item active">Add</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-9">
+          <div class="card">
+            <div class="header">
+              <h2>Add Book</h2>
+            </div>
+            <div class="body">
+              <form class="m-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Title of Book</mat-label>
+                      <input matInput formControlName="title" required />
+                      <mat-error *ngIf="form.get('title').hasError('required')">
+                        Title is Required
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Author</mat-label>
+                      <input matInput formControlName="author" required />
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Year</mat-label>
+                      <input matInput formControlName="year" required />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Number Of Copies</mat-label>
+                      <mat-select disableRipple formControlName="no_of_copies">
+                        <mat-option
+                          *ngFor="let copy of copies"
+                          [value]="copy"
+                          >{{ copy }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                    <button
+                      class="mr-3"
+                      [disabled]="!form.valid"
+                      mat-raised-button
+                      color="primary"
+                      (click)="saveBook()"
+                    >
+                      Submit
+                    </button>
+
+                    <button type="button" mat-button>Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
