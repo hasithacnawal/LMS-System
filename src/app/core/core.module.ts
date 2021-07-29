@@ -5,6 +5,7 @@ import { AuthService } from './service/auth.service';
 import { DynamicScriptLoaderService } from './service/dynamic-script-loader.service';
 import { AuthGuard } from './guard/auth.guard';
 import { throwIfAlreadyLoaded } from './guard/module-import.guard';
+import { ProductsService } from './service/products.service';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { throwIfAlreadyLoaded } from './guard/module-import.guard';
     RightSidebarService,
     AuthGuard,
     AuthService,
+    ProductsService,
     DynamicScriptLoaderService,
   ],
 })
