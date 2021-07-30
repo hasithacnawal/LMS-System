@@ -22,6 +22,7 @@ export class AddBooksComponent implements OnInit {
       title: ['', [Validators.required]],
       author: ['', [Validators.required]],
       year: ['', Validators.minLength(4)],
+      description: [''],
       no_of_copies: ['', Validators.required],
     });
   }

@@ -1,1 +1,120 @@
-<p>home works!</p>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">View All Books</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Books</a>
+            </li>
+            <li class="breadcrumb-item active">View</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="body">
+            <div class="table-responsive">
+              <div class="materialTableHeader">
+                <div class="row">
+                  <div class="col-8">
+                    <ul class="header-buttons-left ml-0">
+                      <li class="dropdown">
+                        <h2>
+                          <strong>Books</strong>
+                        </h2>
+                      </li>
+                      <li class="dropdown m-l-20">
+                        <label for="search-input"
+                          ><i class="material-icons search-icon"
+                            >search</i
+                          ></label
+                        >
+                        <input
+                          placeholder="Search"
+                          type="text"
+                          #filter
+                          class="browser-default search-field"
+                          aria-label="Search box"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="header-buttons">
+                      <li>
+                        <div class="icon-button-demo">
+                          <button mat-mini-fab color="primary">
+                            <mat-icon class="col-white">refresh</mat-icon>
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <mat-grid-list cols="4" rowHeight="320px">
+          <mat-grid-tile *ngFor="let p of products; let i = index">
+            <mat-card>
+              <div><img class="md-card-image img" src="{{ p.url }}" /></div>
+
+              <mat-card-title>{{ p.name }}</mat-card-title>
+              <div class="content">
+                <button mat-button>${{ p.price }}</button>
+                <button mat-button>Available:{{ p.quantity }}</button>
+              </div>
+              <mat-card-actions>
+                <!-- <p>Quanity Added {{qa}} </p> -->
+                <button
+                  *ngIf="!(conditionToDisaply && getQuantity(i) > 0)"
+                  mat-raised-button
+                  color="primary"
+                  class="btn-size"
+                  (click)="addToCart(i, p.id)"
+                >
+                  Add to Cart
+                </button>
+
+                <!-- //hidden buttons to add and delete -->
+                <span *ngIf="conditionToDisaply && getQuantity(i) > 0">
+                  <button
+                    mat-raised-button
+                    color="accent"
+                    class="btn-size-small"
+                    (click)="removeFromCart(i, p.id)"
+                  >
+                    -
+                  </button>
+                  <label class="label-small"
+                    >Items in Cart {{ getQuantity(i) }}
+                  </label>
+                  <button
+                    mat-raised-button
+                    color="accent"
+                    class="btn-size-small"
+                    (click)="addToCart(i, p.id)"
+                  >
+                    +
+                  </button>
+                </span>
+              </mat-card-actions>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </div>
+</section>

@@ -16,6 +16,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
+
       {
         path: 'admin',
         canActivate: [AuthGuard],

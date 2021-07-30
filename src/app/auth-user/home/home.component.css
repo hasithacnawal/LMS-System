@@ -1,0 +1,21 @@
+.back {
+  background-color: #f0f0f0;
+}
+.img {
+  height: 60px;
+  width: 120px;
+  margin: 10px;
+}
+.btn-size {
+  width: 100%;
+}
+mat-card {
+  margin: 0%;
+}
+.btn-size-small {
+  min-width: 10px;
+}
+.label-small {
+  width: 58%;
+  text-align: center;
+}

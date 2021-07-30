@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { LoginPayload } from '../login-payload';
 import { AuthService } from 'src/app/core/service/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
             if (role === 'Admin') {
               this.router.navigate(['/admin']);
             } else if (role === 'User') {
-              this.router.navigate(['/authUser/home']);
+              this.router.navigate(['/authUser']);
             } else {
               this.router.navigate(['/authentication/signin']);
             }
