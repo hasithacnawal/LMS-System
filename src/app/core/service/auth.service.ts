@@ -4,7 +4,6 @@ import { RegisterPayload } from '../../authentication/register-payload';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { LocalStorageService } from 'ngx-webstorage';
 import { LoginPayload } from 'src/app/authentication/login-payload';
 import { JwtAuthResponse } from 'src/app/authentication/jwt-auth-response';
 import { User } from '../models/user';
