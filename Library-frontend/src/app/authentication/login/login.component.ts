@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
       password: ['1234', Validators.required],
     });
   }
-
+  get f() {
+    return this.authForm.controls;
+  }
   adminSet() {
     this.authForm.get('userName').setValue('admin1');
     this.authForm.get('password').setValue('1234');
@@ -44,32 +46,33 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.error = '';
-    this.loginPayload = this.authForm.value;
 
     if (this.authForm.invalid) {
       this.error = 'email or Password not valid !';
       return;
     } else {
-      this.authService.login(this.loginPayload).subscribe(
-        (data) => {
-          if (data) {
-            const role = this.authService.currentUserValue.role.role;
-            if (role === 'Admin') {
-              this.router.navigate(['/admin']);
-            } else if (role === 'User') {
-              this.router.navigate(['/authUser']);
+      this.authService
+        .login(this.f.userName.value, this.f.password.value)
+        .subscribe(
+          (data) => {
+            if (data) {
+              const role = this.authService.currentUserValue.role.role;
+              if (role === 'Admin') {
+                this.router.navigate(['/admin']);
+              } else if (role === 'User') {
+                this.router.navigate(['/authUser']);
+              } else {
+                this.router.navigate(['/authentication/signin']);
+              }
             } else {
-              this.router.navigate(['/authentication/signin']);
+              this.error = 'Invalid Login';
             }
-          } else {
-            this.error = 'Invalid Login';
+          },
+          (error) => {
+            this.error = error;
+            this.submitted = false;
           }
-        },
-        (error) => {
-          this.error = error;
-          this.submitted = false;
-        }
-      );
+        );
     }
   }
 }

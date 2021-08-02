@@ -221,5 +221,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/authentication/signin']);
   }
 }

@@ -4,7 +4,7 @@ import { RegisterPayload } from '../../authentication/register-payload';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { LoginPayload } from 'src/app/authentication/login-payload';
+
 import { JwtAuthResponse } from 'src/app/authentication/jwt-auth-response';
 import { User } from '../models/user';
 
@@ -16,7 +16,7 @@ export class AuthService {
 
   public currentUser: Observable<User>;
 
-  private url = 'http://localhost:8080/api/auth/';
+  private url = 'http://localhost:8888/api/auth/';
 
   constructor(private httpClient: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
@@ -32,18 +32,18 @@ export class AuthService {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
 
-  login(loginPayload: LoginPayload) {
+  login(userName: string, password: string) {
     return this.httpClient
-      .post<JwtAuthResponse>(this.url + 'login', loginPayload)
+      .post<any>(this.url + 'login', { userName, password })
       .pipe(
         map((data) => {
           localStorage.setItem(
             'authenticationToken',
             JSON.stringify(data.authenticationToken)
           );
-          localStorage.setItem('userName', JSON.stringify(data.userName));
-          localStorage.setItem('authUser', JSON.stringify(data.authUser));
-          this.currentUserSubject.next(data.authUser);
+
+          localStorage.setItem('authUser', JSON.stringify(data.value));
+          this.currentUserSubject.next(data.value);
 
           return data;
         })
@@ -58,6 +58,6 @@ export class AuthService {
   }
 
   isAuthenticated(): Boolean {
-    return localStorage.getItem('userName') != null;
+    return localStorage.getItem('authUser') != null;
   }
 }
