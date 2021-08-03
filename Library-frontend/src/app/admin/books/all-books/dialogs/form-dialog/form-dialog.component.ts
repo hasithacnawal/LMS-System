@@ -59,7 +59,7 @@ export class FormDialogComponent {
       //   [Validators.required]
       // ],
       year: [this.books.year],
-      no_of_copies: [this.books.no_of_copies],
+      no_of_copies: [this.books.stockCount],
     });
   }
   submit() {

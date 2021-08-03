@@ -32,9 +32,9 @@ export class AuthService {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
 
-  login(userName: string, password: string) {
+  login(email: string, password: string) {
     return this.httpClient
-      .post<any>(this.url + 'login', { userName, password })
+      .post<any>(this.url + 'login', { email, password })
       .pipe(
         map((data) => {
           localStorage.setItem(

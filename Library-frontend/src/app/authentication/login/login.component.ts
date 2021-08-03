@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { LoginPayload } from '../login-payload';
+
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   authForm: FormGroup;
-  loginPayload: LoginPayload;
   submitted = false;
   error = '';
   hide = true;
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      userName: ['admin1', Validators.required],
+      email: ['admin1@gmail.com', Validators.required],
       password: ['1234', Validators.required],
     });
   }
@@ -35,11 +34,11 @@ export class LoginComponent implements OnInit {
     return this.authForm.controls;
   }
   adminSet() {
-    this.authForm.get('userName').setValue('admin1');
+    this.authForm.get('email').setValue('admin1@gmail.com');
     this.authForm.get('password').setValue('1234');
   }
   userSet() {
-    this.authForm.get('userName').setValue('user1');
+    this.authForm.get('email').setValue('user1@gmail.com');
     this.authForm.get('password').setValue('1234');
   }
 
@@ -52,7 +51,7 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       this.authService
-        .login(this.f.userName.value, this.f.password.value)
+        .login(this.f.email.value, this.f.password.value)
         .subscribe(
           (data) => {
             if (data) {

@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       stockCount: {
         type: DataTypes.INTEGER,
       },
+      author: {
+        type: DataTypes.STRING,
+      },
       authorId: {
         type: DataTypes.INTEGER,
       },

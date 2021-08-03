@@ -4,8 +4,12 @@ export class Book {
   id: number;
   img: string;
   title: string;
+  type: string;
+  description: string;
   author: string;
   year: number;
-  no_of_copies: number;
+  stockCount: number;
   category: Category;
+  authorId: number;
+  categoryId: number;
 }

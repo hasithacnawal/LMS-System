@@ -66,12 +66,12 @@ router.post("/signup", function (req, res) {
   }
 });
 router.post("/login", function (req, res) {
-  const { userName, password } = req.body;
+  const { email, password } = req.body;
   if (
     password == "" ||
     password == undefined ||
-    userName == "" ||
-    userName == undefined
+    email == "" ||
+    email == undefined
   ) {
     res.status(401).json({
       message: "Fill All Fields",
@@ -89,7 +89,7 @@ router.post("/login", function (req, res) {
         },
       ],
       where: {
-        userName,
+        email,
       },
     }).then((value) => {
       if (value === null) {
@@ -103,7 +103,7 @@ router.post("/login", function (req, res) {
         const dbPassword = value.getDataValue("password");
 
         const userDetail = {
-          userName: value.getDataValue("userName"),
+          email: value.getDataValue("email"),
           id: value.getDataValue("id"),
         };
 

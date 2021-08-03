@@ -7,7 +7,7 @@ import { Book } from '../models/book';
   providedIn: 'root',
 })
 export class BooksService {
-  private baseUrl = 'http://localhost:8080/api/books';
+  private baseUrl = 'http://localhost:8888/api/books';
   private fakeUrl = 'assets/data/books.json';
   constructor(private httpClient: HttpClient) {}
   isTblLoading = true;

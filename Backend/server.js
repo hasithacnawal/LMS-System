@@ -30,14 +30,18 @@ app.use(
 
 //api router imports
 const roleRouter = require("./api/role");
+const categoryRouter = require("./api/categories");
 const authRouter = require("./api/auth");
 const bookRouter = require("./api/book");
+const journalRouter = require("./api/journal");
 
 //API routes
 
 app.use("/api/roles", roleRouter);
+app.use("/api/category", categoryRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/books", bookRouter);
+app.use("/api/journal", journalRouter);
 
 const port = process.env.PORT || 8888;
 

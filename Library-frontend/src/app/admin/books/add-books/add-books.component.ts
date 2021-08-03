@@ -1,40 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/core/models/category';
 import { BooksService } from 'src/app/core/service/books.service';
+import { CategoryService } from 'src/app/core/service/category.service';
 
 @Component({
   selector: 'app-add-books',
   templateUrl: './add-books.component.html',
   styleUrls: ['./add-books.component.css'],
 })
-export class AddBooksComponent implements OnInit {
+export class AddBooksComponent {
   form: FormGroup;
+  categories: Observable<Category[]>;
   hide3 = true;
+
   agree3 = false;
   copies: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   constructor(
     private fb: FormBuilder,
     private booksService: BooksService,
+    private router: Router,
+    private categoryService: CategoryService,
     private _snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
-      author: ['', [Validators.required]],
+      img: [''],
+      author: [''],
       year: ['', Validators.minLength(4)],
       description: [''],
-      no_of_copies: ['', Validators.required],
+      authorId: [1],
+      categoryId: [18],
+      stockCount: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categories = this.categoryService.getCategories();
+    console.log(this.categories);
+  }
 
   saveBook() {
     this.booksService.saveBook(this.form.value).subscribe(
       (data) => {
         this.showNotification(
-          'black',
-          'Add Organization Record Successfully...!!!',
+          'green',
+          'Book is Recorded Successfully...!!!',
           'bottom',
           'center'
         );
@@ -45,7 +59,7 @@ export class AddBooksComponent implements OnInit {
 
   showNotification(colorName, text, placementFrom, placementAlign) {
     this._snackBar.open(text, '', {
-      duration: 2000,
+      duration: 3000,
       verticalPosition: placementFrom,
       horizontalPosition: placementAlign,
       panelClass: colorName,
@@ -53,6 +67,8 @@ export class AddBooksComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Form Value', this.form.value);
+    this.saveBook();
+
+    this.router.navigateByUrl('/admin/books/allBooks');
   }
 }

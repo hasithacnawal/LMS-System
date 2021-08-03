@@ -50,13 +50,13 @@ db.Journal = require("./journal")(sequelize, DataTypes);
 
 db.Book.belongsTo(db.Category, {
   foreignKey: "categoryId",
-  as: "category",
+  as: "Category",
 });
 db.Category.hasMany(db.Book);
 
 db.Book.belongsTo(db.Author, {
   foreignKey: "authorId",
-  as: "author",
+  as: "Author",
 });
 db.Author.hasMany(db.Book);
 
