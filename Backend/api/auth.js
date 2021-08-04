@@ -8,11 +8,79 @@ require("dotenv").config();
 const User = db.User;
 const Role = db.Role;
 
+router.post("/", async (req, res) => {
+  const { firstName, lastName, email, password, phone, roleId } = req.body;
+  await User.create({
+    firstName,
+    lastName,
+    phone,
+    email,
+    password,
+    roleId,
+  })
+    .then((value) =>
+      res.status(201).json({
+        message: "Account Has Created Successfully",
+        status: res.statusCode,
+      })
+    )
+    .catch((err) =>
+      res.status(404).json({
+        message: "Something went wrong",
+        status: res.statusCode,
+      })
+    );
+});
+router.put("/changePassword/:id", async (req, res) => {
+  const { id } = req.params;
+  const { oldPassword, password } = req.body;
+
+  await User.findByPk(id)
+    .then((value) => {
+      const dbPassword = value.getDataValue("password");
+      bcrypt.compare(oldPassword, dbPassword, function (err, result) {
+        if (result) {
+          bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(password, salt, function (err, hash) {
+              User.update(
+                { password: hash },
+                {
+                  where: { id: value.id },
+                }
+              );
+              res.status(200).json({
+                message: "Password Changed",
+              });
+            });
+          });
+        } else {
+          res.status(401).json({
+            message: "Enter your correct current password",
+            status: res.statusCode,
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      res.status(404).send();
+    });
+});
+router.get("/", async (req, res) => {
+  const users = await User.findAll({
+    include: [
+      {
+        model: db.Role,
+        as: "role",
+        attributes: ["id", "role"],
+      },
+    ],
+  });
+  res.json(users);
+});
+
 router.post("/signup", function (req, res) {
-  const { firstName, lastName, userName, email, password, roleId } = req.body;
+  const { firstName, lastName, email, password, phone, roleId } = req.body;
   if (
-    userName == undefined ||
-    userName == "" ||
     password == undefined ||
     password == "" ||
     email == undefined ||
@@ -24,7 +92,6 @@ router.post("/signup", function (req, res) {
     });
   } else {
     User.findOne({
-      attributes: ["userName"],
       where: {
         email,
       },
@@ -37,7 +104,7 @@ router.post("/signup", function (req, res) {
             User.create({
               firstName,
               lastName,
-              userName,
+              phone,
               email,
               roleId,
               password: hash,

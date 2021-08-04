@@ -2,16 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Page404Component } from '../authentication/page404/page404.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
   },
   {
     path: 'books',

@@ -27,20 +27,21 @@ export class AddUserComponent implements OnInit {
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
       password: ['1234', [Validators.required]],
-      roleId: [1],
+      phone: [''],
+      roleId: [2],
     });
   }
 
   ngOnInit(): void {}
 
   saveUser() {
-    this.authService.register(this.userForm.value).subscribe(
+    this.authService.createUser(this.userForm.value).subscribe(
       (data) => {
         console.log(data);
 
         this.showNotification(
           'black',
-          'Add Admin Record Successfully...!!!',
+          'Record Added Successfully...!!!',
           'bottom',
           'center'
         );

@@ -31,6 +31,9 @@ export class AuthService {
   register(registerPayload: RegisterPayload) {
     return this.httpClient.post(this.url + 'signup', registerPayload);
   }
+  createUser(user: User): Observable<Object> {
+    return this.httpClient.post(this.url + 'signup', user);
+  }
 
   login(email: string, password: string) {
     return this.httpClient

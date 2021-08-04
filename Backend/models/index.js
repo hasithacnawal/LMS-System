@@ -70,6 +70,9 @@ db.User.belongsTo(db.Role, {
 });
 
 db.User.hasMany(db.Journal);
-db.Journal.belongsTo(db.User);
+db.Journal.belongsTo(db.User, {
+  foreignKey: "createrId",
+  as: "Creater",
+});
 
 module.exports = db;

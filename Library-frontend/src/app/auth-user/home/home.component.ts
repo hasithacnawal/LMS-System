@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { Book } from 'src/app/core/models/book';
+import { BooksService } from 'src/app/core/service/books.service';
 import { ProductsService } from 'src/app/core/service/products.service';
 
 @Component({
@@ -15,15 +18,15 @@ export class HomeComponent implements OnInit {
   orders = [];
 
   constructor(
-    private productservice: ProductsService,
+    private productservice: BooksService,
     public snackBar: MatSnackBar
-  ) {
-    this.products = productservice.products;
-  }
+  ) {}
 
   openSnackBar() {}
 
   ngOnInit() {
+    this.products = this.productservice.getDummy();
+    console.log(this.products);
     // this.productservice.orders.push(this.orders )
   }
 

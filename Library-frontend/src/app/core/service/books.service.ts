@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Book } from '../models/book';
 
 @Injectable({
@@ -14,8 +14,46 @@ export class BooksService {
   dataChange: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
+  public totalSubject = new Subject();
+  public orderSubject = new Subject();
+  orders = [];
+
+  products = [
+    {
+      id: '0',
+      name: 'Carrot',
+      quantity: 2,
+      price: 12,
+      url: 'https://www.sciencedaily.com/images/2008/07/080722102723_1_540x360.jpg',
+    },
+    {
+      id: '1',
+      name: 'Apple',
+      quantity: 10,
+      price: 12,
+      url: 'https://www.sciencedaily.com/images/2008/07/080722102723_1_540x360.jpg',
+    },
+    {
+      id: '2',
+      name: 'Vanilla',
+      quantity: 12,
+      price: 25,
+      url: 'https://www.sciencedaily.com/images/2008/07/080722102723_1_540x360.jpg',
+    },
+    {
+      id: '3',
+      name: 'Vanilla',
+      quantity: 12,
+      price: 25,
+      url: 'https://www.sciencedaily.com/images/2008/07/080722102723_1_540x360.jpg',
+    },
+  ];
+
   get data(): Book[] {
     return this.dataChange.value;
+  }
+  sendTotal(totalVal) {
+    this.totalSubject.next(totalVal);
   }
   getDialogData() {
     return this.dialogData;
@@ -25,7 +63,7 @@ export class BooksService {
     return this.httpClient.post(`${this.baseUrl}/`, book);
   }
 
-  getAllBooks() {
+  getAllBooks(): void {
     this.httpClient.get<Book[]>(`${this.baseUrl}/`).subscribe(
       (data) => {
         this.isTblLoading = false;
@@ -36,6 +74,10 @@ export class BooksService {
         console.log(error.name + ' ' + error.message);
       }
     );
+  }
+
+  getDummy() {
+    return this.httpClient.get<Book[]>(`${this.fakeUrl}`);
   }
   getFakeBooks() {
     this.httpClient.get<Book[]>(this.fakeUrl).subscribe(

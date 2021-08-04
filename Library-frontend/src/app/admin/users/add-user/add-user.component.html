@@ -5,7 +5,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <ul class="breadcrumb breadcrumb-style">
             <li class="breadcrumb-item">
-              <h4 class="page-title">Add Admin</h4>
+              <h4 class="page-title">Add Users</h4>
             </li>
             <li class="breadcrumb-item bcrumb-1">
               <a routerLink="/admin/dashboard/main">
@@ -13,7 +13,7 @@
               >
             </li>
             <li class="breadcrumb-item bcrumb-2">
-              <a href="#" onClick="return false;">Admins</a>
+              <a href="#" onClick="return false;">Users</a>
             </li>
             <li class="breadcrumb-item active">Add</li>
           </ul>
@@ -24,12 +24,12 @@
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Add New Admin</h2>
+            <h2>Add New User</h2>
           </div>
           <div class="body">
             <form class="m-4" [formGroup]="userForm" (ngSubmit)="onSubmit()">
               <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
                     appearance="outline"
@@ -43,7 +43,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
                     appearance="outline"
@@ -84,7 +84,7 @@
                     appearance="outline"
                   >
                     <mat-label>Mobile</mat-label>
-                    <input matInput formControlName="phone" required />
+                    <input matInput formControlName="phone" />
                   </mat-form-field>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                     <input
                       matInput
                       formControlName="password"
-                      type="password"
+                      type="text"
                       required
                     />
                     <mat-error
@@ -118,6 +118,7 @@
                     [disabled]="!userForm.valid"
                     mat-raised-button
                     color="primary"
+                    type="submit"
                   >
                     Submit
                   </button>

@@ -23,8 +23,17 @@ import { UsersRoutingModule } from './users-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 
+import { UserService } from 'src/app/core/service/user.service';
+import { DeleteDialogComponent } from './all-users/dialogs/delete/delete.component';
+import { FormDialogComponent } from './all-users/dialogs/form-dialog/form-dialog.component';
+
 @NgModule({
-  declarations: [AddUserComponent, AllUsersComponent],
+  declarations: [
+    AddUserComponent,
+    AllUsersComponent,
+    DeleteDialogComponent,
+    FormDialogComponent,
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -47,5 +56,6 @@ import { AllUsersComponent } from './all-users/all-users.component';
     MaterialFileInputModule,
     MatProgressSpinnerModule,
   ],
+  providers: [UserService],
 })
 export class UsersModule {}

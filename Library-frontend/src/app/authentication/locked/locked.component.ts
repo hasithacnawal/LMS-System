@@ -24,7 +24,9 @@ export class LockedComponent implements OnInit {
       password: ['', Validators.required],
     });
     this.userImg = this.authService.currentUserValue.img;
-    this.userFullName = this.authService.currentUserValue.userName;
+    this.userFullName =
+      this.authService.currentUserValue.firstName +
+      this.authService.currentUserValue.lastName;
   }
   get f() {
     return this.authForm.controls;

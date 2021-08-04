@@ -14,6 +14,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BooksService } from 'src/app/core/service/books.service';
 import { Book } from 'src/app/core/models/book';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-books',
@@ -40,7 +41,8 @@ export class AllBooksComponent implements OnInit {
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public bookService: BooksService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -52,28 +54,29 @@ export class AllBooksComponent implements OnInit {
     this.loadData();
   }
   addNew() {
-    const dialogRef = this.dialog.open(FormDialogComponent, {
-      data: {
-        book: this.book,
-        action: 'add',
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase.dataChange.value.unshift(
-          this.bookService.getDialogData()
-        );
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
+    this.router.navigateByUrl('/admin/books/addBooks');
+    // const dialogRef = this.dialog.open(FormDialogComponent, {
+    //   data: {
+    //     book: this.book,
+    //     action: 'add',
+    //   },
+    // });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result === 1) {
+    //     // After dialog is closed we're doing frontend updates
+    //     // For add we're just pushing a new row inside DataServicex
+    //     this.exampleDatabase.dataChange.value.unshift(
+    //       this.bookService.getDialogData()
+    //     );
+    //     this.refreshTable();
+    //     this.showNotification(
+    //       'snackbar-success',
+    //       'Add Record Successfully...!!!',
+    //       'bottom',
+    //       'center'
+    //     );
+    //   }
+    // });
   }
   editCall(row) {
     const dialogRef = this.dialog.open(FormDialogComponent, {
