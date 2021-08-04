@@ -32,5 +32,25 @@ router.get("/", function (req, res) {
       res.status(500).json(err);
     });
 });
+router.get("/myAll/:id", function (req, res) {
+  const { id } = req.params;
+  Journal.findAll({
+    include: [
+      {
+        model: db.User,
+        as: "Creater",
+      },
+    ],
+    where: {
+      createrId: id,
+    },
+  })
+    .then((value) => {
+      res.send(value);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

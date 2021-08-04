@@ -43,8 +43,20 @@ export class UserService {
         })
       );
   }
-  getAllAdmins(): void {
+  getAllUsers(): void {
     this.httpClient.get<User[]>(this.baseUrl).subscribe(
+      (data) => {
+        this.isTblLoading = false;
+        this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+        this.isTblLoading = false;
+        console.log(error.name + ' ' + error.message);
+      }
+    );
+  }
+  getAllAdmins(): void {
+    this.httpClient.get<User[]>(this.baseUrl + 'admins').subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -87,7 +99,7 @@ export class UserService {
   }
   updateAdminAccount(id: number, admin: User): Observable<Object> {
     this.dialogData = admin;
-    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`, admin).pipe(
+    return this.httpClient.put(`${this.baseUrl}updateUser/${id}`, admin).pipe(
       catchError((error) => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {

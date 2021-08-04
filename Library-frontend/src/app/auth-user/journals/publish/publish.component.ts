@@ -49,7 +49,7 @@ export class PublishComponent implements OnInit {
       (data) => {
         this.showNotification(
           'success-green',
-          'Book is Recorded Successfully...!!!',
+          'Journal is published Successfully...!!!',
           'bottom',
           'center'
         );

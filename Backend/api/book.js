@@ -42,6 +42,14 @@ router.post("/", async (req, res) => {
   return res.json(book);
 });
 
+const books = require("../data/books");
+
+router.get("/seed", async (req, res) => {
+  const bookList = await Book.bulkCreate(books);
+  res.send(bookList);
+  console.log("bulk books created");
+});
+
 //get all books
 router.get("/", function (req, res) {
   Book.findAll({
@@ -54,7 +62,7 @@ router.get("/", function (req, res) {
       {
         model: db.Category,
         attributes: ["id", "name"],
-        as: "Category",
+        as: "category",
       },
     ],
   })

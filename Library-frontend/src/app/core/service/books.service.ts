@@ -80,7 +80,7 @@ export class BooksService {
     return this.httpClient.get<Book[]>(`${this.fakeUrl}`);
   }
   getFakeBooks() {
-    this.httpClient.get<Book[]>(this.fakeUrl).subscribe(
+    this.httpClient.get<Book[]>(this.baseUrl).subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);

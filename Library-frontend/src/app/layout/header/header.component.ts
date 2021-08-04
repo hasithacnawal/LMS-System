@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   langStoreValue: string;
   defaultFlag: string;
   orgName: string;
+  userRole: string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -94,7 +95,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.config = this.configService.configData;
-
+    this.userRole = this.authService.currentUserValue.role.role;
     this.langStoreValue = localStorage.getItem('lang');
     const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
     this.countryName = val.map((element) => element.text);
@@ -222,5 +223,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/authentication/signin']);
+  }
+  profile() {
+    if (this.userRole == 'Admin') {
+      this.router.navigateByUrl('/admin/settings');
+    } else if (this.userRole == 'User') {
+      this.router.navigateByUrl('/authUser/settings');
+    } else {
+      return;
+    }
   }
 }

@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       img: {
         type: DataTypes.STRING,
+        defaultValue: "assets/images/books/book8.JPEG",
       },
       type: {
         type: DataTypes.STRING,

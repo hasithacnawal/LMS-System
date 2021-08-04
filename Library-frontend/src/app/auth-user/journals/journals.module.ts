@@ -23,6 +23,8 @@ import { AllJournalComponent } from './all-journal/all-journal.component';
 import { PublishComponent } from './publish/publish.component';
 import { DeleteDialogComponent } from './my-journal/dialogs/delete/delete.component';
 import { FormDialogComponent } from './my-journal/dialogs/form-dialog/form-dialog.component';
+import { AllJournalDelete } from './all-journal/dialogs/delete/delete.component';
+import { AllJournalDialog } from './all-journal/dialogs/form-dialog/form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { FormDialogComponent } from './my-journal/dialogs/form-dialog/form-dialo
     PublishComponent,
     DeleteDialogComponent,
     FormDialogComponent,
+    AllJournalDelete,
+    AllJournalDialog,
   ],
   imports: [
     CommonModule,

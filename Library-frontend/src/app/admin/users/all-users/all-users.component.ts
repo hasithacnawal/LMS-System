@@ -12,6 +12,7 @@ import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-users',
@@ -39,7 +40,8 @@ export class AllUsersComponent implements OnInit {
     public dialog: MatDialog,
     public authService: AuthService,
     public userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -51,28 +53,7 @@ export class AllUsersComponent implements OnInit {
     this.loadData();
   }
   addNew() {
-    const dialogRef = this.dialog.open(FormDialogComponent, {
-      data: {
-        users: this.users,
-        action: 'add',
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataServicex
-        this.exampleDatabase.dataChange.value.unshift(
-          this.userService.getDialogData()
-        );
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
+    this.router.navigateByUrl('admin/users/addUser');
   }
   editCall(row) {
     this.id = row.id;
@@ -216,7 +197,7 @@ export class ExampleDataSource extends DataSource<User> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllAdmins();
+    this.exampleDatabase.getAllUsers();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data

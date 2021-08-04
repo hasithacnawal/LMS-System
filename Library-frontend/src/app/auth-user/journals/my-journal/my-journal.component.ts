@@ -13,6 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Journal } from 'src/app/core/models/journal';
+import { AuthService } from 'src/app/core/service/auth.service';
 @Component({
   selector: 'app-my-journal',
   templateUrl: './my-journal.component.html',
@@ -25,11 +26,13 @@ export class MyJournalComponent implements OnInit {
   selection = new SelectionModel<Journal>(true, []);
   index: number;
   id: number;
+
   book: Journal | null;
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public bookService: JournalService,
+    private authService: AuthService,
     private snackBar: MatSnackBar
   ) {}
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -157,7 +160,8 @@ export class MyJournalComponent implements OnInit {
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
-      this.sort
+      this.sort,
+      this.authService
     );
     fromEvent(this.filter.nativeElement, 'keyup').subscribe(() => {
       if (!this.dataSource) {
@@ -188,7 +192,8 @@ export class ExampleDataSource extends DataSource<Journal> {
   constructor(
     public exampleDatabase: JournalService,
     public paginator: MatPaginator,
-    public _sort: MatSort
+    public _sort: MatSort,
+    public authService: AuthService
   ) {
     super();
     // Reset to the first page when the user changes the filter.
@@ -203,7 +208,8 @@ export class ExampleDataSource extends DataSource<Journal> {
       this.filterChange,
       this.paginator.page,
     ];
-    this.exampleDatabase.getAllJournals();
+
+    this.exampleDatabase.getMyJournals(this.authService.currentUserValue.id);
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data

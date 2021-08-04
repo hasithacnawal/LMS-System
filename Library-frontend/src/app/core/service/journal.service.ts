@@ -39,6 +39,18 @@ export class JournalService {
       }
     );
   }
+  getMyJournals(id: number): void {
+    this.httpClient.get<Journal[]>(`${this.baseUrl}/myAll/${id}`).subscribe(
+      (data) => {
+        this.isTblLoading = false;
+        this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+        this.isTblLoading = false;
+        console.log(error.name + ' ' + error.message);
+      }
+    );
+  }
 
   getDummy() {
     return this.httpClient.get<Journal[]>(`${this.fakeUrl}`);

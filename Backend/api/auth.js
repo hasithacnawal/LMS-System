@@ -65,6 +65,27 @@ router.put("/changePassword/:id", async (req, res) => {
       res.status(404).send();
     });
 });
+//Update Admin
+router.put("/updateUser/:id", function (req, res) {
+  const { id } = req.params;
+  const { firstName, lastName, email, phone } = req.body;
+
+  User.update(
+    { firstName, lastName, email, phone },
+    {
+      where: { id: id },
+    }
+  )
+    .then(() => {
+      res.status(200).json("updated successfully an User with id = " + id);
+    })
+    .catch((err) => {
+      res.status(404).json({
+        message: "Error occured",
+      });
+    });
+});
+
 router.get("/", async (req, res) => {
   const users = await User.findAll({
     include: [
@@ -74,6 +95,24 @@ router.get("/", async (req, res) => {
         attributes: ["id", "role"],
       },
     ],
+    where: {
+      roleId: 2,
+    },
+  });
+  res.json(users);
+});
+router.get("/admins", async (req, res) => {
+  const users = await User.findAll({
+    include: [
+      {
+        model: db.Role,
+        as: "role",
+        attributes: ["id", "role"],
+      },
+    ],
+    where: {
+      roleId: 1,
+    },
   });
   res.json(users);
 });
