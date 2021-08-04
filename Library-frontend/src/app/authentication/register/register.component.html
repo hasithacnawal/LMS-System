@@ -98,20 +98,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>User Name</mat-label>
-                  <input matInput formControlName="userName" required />
-                  <mat-icon matSuffix>face</mat-icon>
-                  <mat-error
-                    *ngIf="registerForm.get('userName').hasError('required')"
-                  >
-                    Username is required
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
+
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -125,6 +112,20 @@
                     "
                   >
                     Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="phone" />
+                  <mat-icon matSuffix>phone</mat-icon>
+                  <mat-error
+                    *ngIf="registerForm.get('phone').hasError('required')"
+                  >
+                    Phone is required
                   </mat-error>
                 </mat-form-field>
               </div>
